@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Bisc8TableViewController: UITableViewController {
+class Bisc8TableViewController: UITableViewController, AdicionaRefeicaoDelegate {
     
     var refeicoes = [
         Refeicao(nome: "Macarrão", felicidade: 3),
@@ -34,8 +34,13 @@ class Bisc8TableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "adicionarItem" {
+            print("usando o segue adicionarItem")
+        }
+        
         if let viewController = segue.destination as? ViewController {
-            viewController.tableViewController = self
+            viewController.delegate = self
         }
     }
     
