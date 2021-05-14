@@ -11,20 +11,50 @@ protocol AdicionaRefeicaoDelegate {
     func add(_ refeicao: Refeicao)
 }
 
-class ViewController: UIViewController, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AdicionaItensDelegate {
+    
+    // MARK: - IBOutlet
+    
+    @IBOutlet weak var itensTableView: UITableView!
+    
     
     // MARK: - Atributos
     
 //    var tableViewController: Bisc8TableViewController?
     var delegate: AdicionaRefeicaoDelegate?
-    var itens: [String] = [
-        "Molho de tomate", "Queijo", "Molho avinagrete", "Salsinha", "Cebilinha"
+    var itens: [Item] = [ Item(nome: "Molho de tomate", calorias: 40.0),
+                          Item(nome: "Queijo", calorias: 40.0),
+                          Item(nome: "Molho avinagrete", calorias: 40.0),
+                          Item(nome: "Salsinha", calorias: 40.0),
+                          Item(nome: "Cebilinha", calorias: 40.0)
     ]
+    
+    var itensSelecionados: [Item] = []
 
     // MARK: - IBOutlets
     
     @IBOutlet var nomeTextField: UITextField?
     @IBOutlet weak var felicidadeTextField: UITextField?
+    
+    // MARK: - View life cycle
+    
+    override func viewDidLoad() {
+        let botaoAdicinarItem = UIBarButtonItem(title: "Adicinar", style: .plain, target: self, action: #selector(self.adicionarItem))
+        
+        navigationItem.rightBarButtonItem = botaoAdicinarItem
+    }
+    
+    @objc func adicionarItem() {
+        print("Item adicionado")
+        
+        let adicionarItensViewController = AdicionarItensViewController(delegate: self)
+        navigationController?.pushViewController(adicionarItensViewController, animated: true)
+    }
+    
+    func add(_ item: Item) {
+        itens.append(item)
+        itensTableView.reloadData()
+    }
     
     // MARK: - UITableViewDataSource
     
@@ -38,26 +68,34 @@ class ViewController: UIViewController, UITableViewDataSource {
         let linhaDaTabelaDeItens = indexPath.row
         let item = itens[linhaDaTabelaDeItens]
         
-        celula.textLabel?.text = item
+        celula.textLabel?.text = item.nome
         
         return celula
+    }
+    
+    // MARK: - UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let celula = tableView.cellForRow(at: indexPath) else { return }
+        if celula.accessoryType == .none {
+            celula.accessoryType = .checkmark
+            
+            let linhaDaTabela = indexPath.row
+            itensSelecionados.append(itens[linhaDaTabela])
+        } else {
+            celula.accessoryType = .none
+            
+            let item = itens[indexPath.row]
+            if let position = itensSelecionados.firstIndex(of: item) {
+                itensSelecionados.remove(at: position)
+            }
+        }
     }
     
     // MARK: -IBActions
     
     @IBAction func adicionar(_ sender: UIButton) {
                 
-//        if let nomeDaRefeicao = nomeTextField?.text,
-//           let felicidadeDaRefeicao = felicidadeTextField?.text {
-//            let nome = nomeDaRefeicao
-//            if let felicidade = Int(felicidadeDaRefeicao) {
-//                let refeicao = Refeicao(nome: nome, felicidade: felicidade)
-//
-//                print("Comi \(refeicao.nome) e fiquei com felicidade: \(refeicao.felicidade)")
-//            } else {
-//                print("Erro ao tentar criar a refeição!!!")
-//            }
-//        }
         guard let nomeDaRefeicao = nomeTextField?.text else {
             return
         }
@@ -67,7 +105,9 @@ class ViewController: UIViewController, UITableViewDataSource {
             return
         }
         
-        let refeicao = Refeicao(nome: nomeDaRefeicao, felicidade: felicidade)
+        let refeicao = Refeicao(nome: nomeDaRefeicao, felicidade: felicidade, itens: itensSelecionados)
+        
+//        refeicao.itens = itensSelecionados
         
         print("Comi \(refeicao.nome) e fiquei com felicidade: \(refeicao.felicidade)")
         
