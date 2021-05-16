@@ -15,7 +15,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // MARK: - IBOutlet
     
-    @IBOutlet weak var itensTableView: UITableView!
+    @IBOutlet weak var itensTableView: UITableView?
     
     
     // MARK: - Atributos
@@ -53,7 +53,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func add(_ item: Item) {
         itens.append(item)
-        itensTableView.reloadData()
+        if let tableView = itensTableView {
+            tableView.reloadData()
+        } else {
+            let alerta = UIAlertController(title: "Desculpa", message: "Não foi possível atualizar a tabela!", preferredStyle: .alert)
+            // botão
+            let ok = UIAlertAction(title: "0k", style: .cancel, handler: nil)
+            // adiciono o botão np alert
+            alerta.addAction(ok)
+            
+            // apresento o alert ao usuário
+            present(alerta, animated: true, completion: nil)
+            
+        }
     }
     
     // MARK: - UITableViewDataSource
