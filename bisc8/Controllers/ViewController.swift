@@ -56,15 +56,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let tableView = itensTableView {
             tableView.reloadData()
         } else {
-            let alerta = UIAlertController(title: "Desculpa", message: "Não foi possível atualizar a tabela!", preferredStyle: .alert)
-            // botão
-            let ok = UIAlertAction(title: "0k", style: .cancel, handler: nil)
-            // adiciono o botão np alert
-            alerta.addAction(ok)
-            
-            // apresento o alert ao usuário
-            present(alerta, animated: true, completion: nil)
-            
+            // chamando a classe Alerta
+            Alerta(controller: self).exibe(title: "Desculpe", message: "Não foi possível atualizar a tabela")
         }
     }
     
@@ -104,24 +97,30 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    // MARK: -IBActions
-    
-    @IBAction func adicionar(_ sender: UIButton) {
-                
+    func recuperaRefeicaoDoFormulario() -> Refeicao? {
         guard let nomeDaRefeicao = nomeTextField?.text else {
-            return
+            Alerta(controller: self).exibe(message: "Erro ao ler o campo nome")
+            return nil
         }
         
         guard let felicidadeDaRefeicao = felicidadeTextField?.text,
               let felicidade = Int(felicidadeDaRefeicao) else {
-            return
+            Alerta(controller: self).exibe(message: "Erro ao ler o campo felicidade")
+            return nil
         }
         
         let refeicao = Refeicao(nome: nomeDaRefeicao, felicidade: felicidade, itens: itensSelecionados)
         
-//        refeicao.itens = itensSelecionados
-        
-        print("Comi \(refeicao.nome) e fiquei com felicidade: \(refeicao.felicidade)")
+        return refeicao
+    }
+    
+    // MARK: -IBActions
+    
+    @IBAction func adicionar(_ sender: UIButton) {
+        guard let refeicao = recuperaRefeicaoDoFormulario() else {
+            Alerta(controller: self).exibe(message: "Erro ao ler os dados do formulário!")
+            return
+        }
         
         delegate?.add(refeicao)
         
