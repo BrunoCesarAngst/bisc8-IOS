@@ -43,19 +43,11 @@ class Bisc8TableViewController: UITableViewController, AdicionaRefeicaoDelegate 
             guard let indexPath = tableView.indexPath(for: celula) else { return }
             let refeicao = refeicoes[indexPath.row]
                         
-            let alerta = UIAlertController(title: refeicao.nome, message: refeicao.detalhes(), preferredStyle: .alert)
-            let ok = UIAlertAction(title: "0K", style: .cancel)
-            alerta.addAction(ok)
-            let botaoRemover = UIAlertAction(title: "Remover", style: .destructive,
-                /* closure */
-                handler: { alerta in
+            RemoveRefeicaoViewController(controller: self)
+                .exibe(refeicao, handler: { alerta in
                     self.refeicoes.remove(at: indexPath.row)
                     self.tableView.reloadData()
-                })
-            alerta.addAction(botaoRemover)
-            present(alerta, animated: true, completion: nil)
-            
-            print("refeição: \(refeicao.nome)")
+            })
         }
     }
     

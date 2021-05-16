@@ -18,6 +18,7 @@
 		E4AD3042264A9C9300859883 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4AD3040264A9C9300859883 /* Main.storyboard */; };
 		E4AD3044264A9C9800859883 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4AD3043264A9C9800859883 /* Assets.xcassets */; };
 		E4AD3047264A9C9800859883 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4AD3045264A9C9800859883 /* LaunchScreen.storyboard */; };
+		E4E0361B26519F0200343774 /* removeRefeicaoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E0361A26519F0200343774 /* removeRefeicaoViewController.swift */; };
 		E4E639F9264BEB2C00470202 /* Bisc8TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E639F8264BEB2C00470202 /* Bisc8TableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		E4AD3046264A9C9800859883 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E4AD3048264A9C9800859883 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4AD3050264AC77800859883 /* bisc8.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = bisc8.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		E4E0361A26519F0200343774 /* removeRefeicaoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = removeRefeicaoViewController.swift; sourceTree = "<group>"; };
 		E4E639F8264BEB2C00470202 /* Bisc8TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bisc8TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +68,7 @@
 				E4AD303E264A9C9300859883 /* ViewController.swift */,
 				E4E639F8264BEB2C00470202 /* Bisc8TableViewController.swift */,
 				E4716CBC264E71A200CDD2D6 /* AdicionarItensViewController.swift */,
+				E4E0361A26519F0200343774 /* removeRefeicaoViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4E0361B26519F0200343774 /* removeRefeicaoViewController.swift in Sources */,
 				E4716CC1264F188800CDD2D6 /* Alerta.swift in Sources */,
 				E4A8C7DC264B59EB0021B2A1 /* Item.swift in Sources */,
 				E4AD303F264A9C9300859883 /* ViewController.swift in Sources */,
