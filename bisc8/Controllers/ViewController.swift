@@ -22,12 +22,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
 //    var tableViewController: Bisc8TableViewController?
     var delegate: AdicionaRefeicaoDelegate?
-    var itens: [Item] = [ Item(nome: "Molho de tomate", calorias: 40.0),
-                          Item(nome: "Queijo", calorias: 40.0),
-                          Item(nome: "Molho avinagrete", calorias: 40.0),
-                          Item(nome: "Salsinha", calorias: 40.0),
-                          Item(nome: "Cebilinha", calorias: 40.0)
-    ]
+    var itens: [Item] = []
     
     var itensSelecionados: [Item] = []
 
@@ -42,6 +37,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let botaoAdicinarItem = UIBarButtonItem(title: "Adicinar", style: .plain, target: self, action: #selector(self.adicionarItem))
         
         navigationItem.rightBarButtonItem = botaoAdicinarItem
+        
+        recuperaItens()
+        
+    }
+    
+    func recuperaItens() {
+        itens = ItemDao().recupera()
     }
     
     @objc func adicionarItem() {
@@ -53,6 +55,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func add(_ item: Item) {
         itens.append(item)
+        
+        ItemDao().save(itens)
+        
         if let tableView = itensTableView {
             tableView.reloadData()
         } else {

@@ -19,6 +19,8 @@
 		E4AD3044264A9C9800859883 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4AD3043264A9C9800859883 /* Assets.xcassets */; };
 		E4AD3047264A9C9800859883 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4AD3045264A9C9800859883 /* LaunchScreen.storyboard */; };
 		E4E0361B26519F0200343774 /* removeRefeicaoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E0361A26519F0200343774 /* removeRefeicaoViewController.swift */; };
+		E4E22BA8265278E700E6FA79 /* RefeicaoDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E22BA7265278E700E6FA79 /* RefeicaoDao.swift */; };
+		E4E22BAA265285D600E6FA79 /* ItemDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E22BA9265285D600E6FA79 /* ItemDao.swift */; };
 		E4E639F9264BEB2C00470202 /* Bisc8TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E639F8264BEB2C00470202 /* Bisc8TableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +40,8 @@
 		E4AD3048264A9C9800859883 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4AD3050264AC77800859883 /* bisc8.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = bisc8.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E4E0361A26519F0200343774 /* removeRefeicaoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = removeRefeicaoViewController.swift; sourceTree = "<group>"; };
+		E4E22BA7265278E700E6FA79 /* RefeicaoDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefeicaoDao.swift; sourceTree = "<group>"; };
+		E4E22BA9265285D600E6FA79 /* ItemDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDao.swift; sourceTree = "<group>"; };
 		E4E639F8264BEB2C00470202 /* Bisc8TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bisc8TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,6 +62,8 @@
 				E4A8C7DB264B59EB0021B2A1 /* Item.swift */,
 				E4A8C7D9264B56280021B2A1 /* Refeicao.swift */,
 				E4716CC0264F188800CDD2D6 /* Alerta.swift */,
+				E4E22BA7265278E700E6FA79 /* RefeicaoDao.swift */,
+				E4E22BA9265285D600E6FA79 /* ItemDao.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -189,9 +195,11 @@
 				E4716CC1264F188800CDD2D6 /* Alerta.swift in Sources */,
 				E4A8C7DC264B59EB0021B2A1 /* Item.swift in Sources */,
 				E4AD303F264A9C9300859883 /* ViewController.swift in Sources */,
+				E4E22BA8265278E700E6FA79 /* RefeicaoDao.swift in Sources */,
 				E4716CBE264E71A200CDD2D6 /* AdicionarItensViewController.swift in Sources */,
 				E4AD303B264A9C9300859883 /* AppDelegate.swift in Sources */,
 				E4E639F9264BEB2C00470202 /* Bisc8TableViewController.swift in Sources */,
+				E4E22BAA265285D600E6FA79 /* ItemDao.swift in Sources */,
 				E4AD303D264A9C9300859883 /* SceneDelegate.swift in Sources */,
 				E4A8C7DA264B56280021B2A1 /* Refeicao.swift in Sources */,
 			);

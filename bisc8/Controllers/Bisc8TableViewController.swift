@@ -9,23 +9,10 @@ import UIKit
 
 class Bisc8TableViewController: UITableViewController, AdicionaRefeicaoDelegate {
     
-    var refeicoes = [
-        Refeicao(nome: "Macarrão", felicidade: 3),
-        Refeicao(nome: "Lasanha", felicidade: 5),
-        Refeicao(nome: "Churrasco", felicidade: 5)
-    ]
+    var refeicoes: [Refeicao] = []
     
     override func viewDidLoad() {
-        guard let diretorio = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let caminho = diretorio.appendingPathComponent("bisc8")
-        
-        do {
-            let dados = try Data(contentsOf: caminho)
-            guard let refeicoesSalvas = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(dados) as? Array<Refeicao> else { return }
-            refeicoes = refeicoesSalvas
-        } catch {
-            print(error.localizedDescription)
-        }
+        refeicoes = RefeicaoDao().recupera()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,15 +35,7 @@ class Bisc8TableViewController: UITableViewController, AdicionaRefeicaoDelegate 
         refeicoes.append(refeicao)
         tableView.reloadData()
         
-        guard let diretorio = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let caminho = diretorio.appendingPathComponent("bisc8")
-        
-        do {
-            let dados = try NSKeyedArchiver.archivedData(withRootObject: refeicoes, requiringSecureCoding: false)
-            try dados.write(to: caminho)
-        } catch {
-            print(error.localizedDescription)
-        }
+        RefeicaoDao().save(refeicoes)
         
         
     }
